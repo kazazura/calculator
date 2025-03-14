@@ -29,6 +29,9 @@ function operate(operator, num1, num2) {
     }
 }
 
+// const display = document.querySelector('input');
+// display.value = 1234;
+
 // operator = '/';
 // num1 = 2;
 // num2 = 3;

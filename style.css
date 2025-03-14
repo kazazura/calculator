@@ -1,10 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: "Roboto";
+}
+
 body {
     margin: 0px;
     padding: 0px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.calculator {
+    max-width: 500px;
+    min-width: 500px;
+    background-color: hsl(0, 0%, 15%);
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.display {
+    width: 500px;
+    padding: 50px 30px;
+    text-align: right;
+    font-size: 70px;
+    color: white;
+    background-color: hsl(0, 0%, 0%);
+    border: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 30px 0px;
 }
 
 button {
     height: 100px;
     width: 100px;
+    border: none;
+    border-radius: 15px;
+    background-color: hsl(0, 0%, 15%);
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
 }
+
+.clear {
+    color: red;
+}
+
+.operator {
+    color:rgb(39, 199, 106);
+}
+
+.equal-sign {
+    background-color: rgb(39, 199, 106);
+    flex: .737;
+}
+
+button:hover {
+    background-color: hsl(0, 0%, 25%);
+}
+
+button:active {
+    background-color: hsl(0, 0%, 30%);
+}
+
+.equal-sign:hover {
+    background-color: hsl(145, 67.2%, 55%);
+}
+
+.equal-sign:active {
+    background-color: hsl(145, 67.2%, 60%);
+}
+

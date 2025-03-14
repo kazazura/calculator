@@ -1,0 +1,10 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+}
+
+button {
+    height: 100px;
+    width: 100px;
+}

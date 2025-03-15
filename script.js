@@ -1,4 +1,9 @@
 let num1, operator, num2;
+const display = document.querySelector('.display');
+const btnClear = document.querySelector('.clear');
+const btnNum = document.querySelectorAll('.number');
+const btnOperator = document.querySelectorAll('.operator');
+const btnEquals = document.querySelector('.equal-sign');
 
 function add(num1, num2) {
     return num1 + num2;
@@ -28,6 +33,37 @@ function operate(operator, num1, num2) {
             return divide(num1, num2);
     }
 }
+
+function clearDisplay() {
+    display.value = '';
+}
+
+function addToDisplay(input) {
+    display.value += input;
+}
+
+btnClear.addEventListener('click', clearDisplay);
+
+btnNum.forEach(btn => {
+    btn.addEventListener('click', ()=> {
+        addToDisplay(btn.value)
+    })
+});
+
+btnOperator.forEach(btn => {
+    btn.addEventListener('click', ()=> {
+        addToDisplay(btn.value)
+    })
+});
+
+
+
+
+
+
+
+
+
 
 // const display = document.querySelector('input');
 // display.value = 1234;

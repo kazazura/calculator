@@ -88,7 +88,8 @@ function calculate() {
     if (operand2 === 0) {
         display.value = '?';
     } else {
-        result = operate(operator, operand1, operand2);
+        //rounds to 3 decimal places only
+        result = operate(operator, operand1, operand2).toFixed(3);
         num2 = result.toString();
         operator = '';
         num1 = '';
@@ -133,4 +134,5 @@ buttons.forEach(btn => {
         }
     });
 });
+
 

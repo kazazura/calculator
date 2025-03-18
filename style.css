@@ -60,6 +60,14 @@ button {
     color:rgb(39, 199, 106);
 }
 
+.sign-toggle {
+    color:rgb(39, 199, 106);
+}
+
+.percent {
+    color:rgb(39, 199, 106);
+}
+
 .equal-sign {
     background-color: rgb(39, 199, 106);
     flex: .737;

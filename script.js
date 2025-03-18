@@ -1,10 +1,6 @@
-let numbers = '1234567890';
-let num1, operator, num2, displayValue, result = 0;
+let num1 = '', num2 = '', operator = '', checkerVar = false;
 const display = document.querySelector('.display');
-const btnClear = document.querySelector('.clear');
-const btnNum = document.querySelectorAll('.number');
-const btnOperator = document.querySelectorAll('.operator');
-const btnEquals = document.querySelector('.equal-sign');
+const buttons = document.querySelectorAll('button');
 
 function add(num1, num2) {
     return num1 + num2;
@@ -22,10 +18,6 @@ function divide(num1, num2) {
     return num1 / num2;
 }
 
-function modulo(num1, num2) {
-    return num1 % num2;
-}
-
 function operate(operator, num1, num2) {
     switch (operator) {
         case '+':
@@ -36,94 +28,109 @@ function operate(operator, num1, num2) {
             return multiply(num1, num2);
         case '÷':
             return divide(num1, num2);
-        case '%':
-            return modulo(num1, num2);
     }
+}
+
+function getOperator(op) {
+    if (num2 === '') {
+        return;
+    }
+    if (num1 !== '') {
+        calculate();
+    }
+    operator = op;
+    num1 = num2;
+    num2 = '';
+    display.value = `${num1} ${operator}`;
+}
+
+function getOperand(num) {
+    num2 += num;
+    display.value = `${num1} ${operator} ${num2}`;
+}
+
+function toggleSign() {
+    let negativeSign = '-';
+    if (num2 === '') {
+        return;
+    } else if (num2 !== '' && !num2.includes('-')) {
+        num2 = negativeSign + num2;
+    } else if (num2 !== '' && num2.includes('-')) {
+        num2 = num2.slice(1);
+    } else if (num1 !== '' && !num1.includes('-')) {
+        num1 = negativeSign + num1;
+    } else if (num1 !== '' && num1.includes('-')) {
+        num1 = num1.slice(1);
+    }
+    display.value = `${num1} ${operator} ${num2}`;
+}
+
+function percent() {
+    if (num2 === '') {
+        return;
+    } else if (num2 !== '') {
+        num2 = num2 / 100;
+    } else if (num1 === '') {
+        return;
+    } else if (num1 !== '') {
+        num1 = num1 / 100;
+    }
+    display.value = `${num1} ${operator} ${num2}`;
 }
 
 function calculate() {
-    let operandArr = [];
-    displayValue = display.value;
-    if (displayValue.includes('+')) {
-        operator = '+';
-        operandArr = displayValue.split('+');
-        num1 = operandArr[0];
-        num2 = operandArr[1];
-    } else if (displayValue.includes('÷')) {
-        operator = '÷';
-        operandArr = displayValue.split('÷');
-        num1 = operandArr[0];
-        num2 = operandArr[1];
-    } else if (displayValue.includes('×')) {
-        operator = '×';
-        operandArr = displayValue.split('×');
-        num1 = operandArr[0];
-        num2 = operandArr[1];
-    } else if (displayValue.includes('%')) {
-        operator = '%';
-        operandArr = displayValue.split('%');
-        num1 = operandArr[0];
-        num2 = operandArr[1];
-    } else if (displayValue.at(0) === '-' && displayValue.includes('-')) {
-        operator = '-';
-        operandArr = displayValue.split('-');
-        operandArr.shift();
-        num1 = operator + operandArr[0];
-        num2 = operandArr[1];
-    } else {
-        operator = '-';
-        operandArr = displayValue.split('-');
-        num1 = operandArr[0];
-        num2 = operandArr[1];
+    if (num1 === '' || num2 === '') {
+        return;
     }
-
-    if((num1 === '' || num2 === '' || operator === '')) {
-        null;
+    let result;
+    let operand1 = parseFloat(num1);
+    let operand2 = parseFloat(num2);
+    if (operand2 === 0) {
+        display.value = '?';
     } else {
-        result = operate(operator, Number(num1), Number(num2));
-        console.log("num1: " + num1, '\n' + "num2: " + num2, '\n' + "result: " + result);
-        display.value = result;
+        result = operate(operator, operand1, operand2);
+        num2 = result.toString();
+        operator = '';
+        num1 = '';
+        display.value = num2;
+        checkerVar = true;
     }
-   
 }
 
 function clearDisplay() {
+    num1 = '';
+    num2 = '';
+    operator = '';
     display.value = '';
 }
 
-function addToDisplay(input) {
-    display.value += input;
-}
-
-btnClear.addEventListener('click', clearDisplay);
-
-btnNum.forEach(btn => {
+buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-        addToDisplay(btn.value);
-    })
-});
-
-btnOperator.forEach(btn => {
-    btn.addEventListener('click', () => {
-        if (display.value === '' && btn.value != '-') {
-            null;
-        } else if (display.value === '-') {
-            null;
-        } else {
-            addToDisplay(btn.value);
+        if (btn.classList.contains('operator')) {
+            if (checkerVar === true) {
+                checkerVar = false;
+            }
+            getOperator(btn.value)
+        } else if (btn.classList.contains('number')) {
+            if (checkerVar === true) {
+                clearDisplay();
+                checkerVar = false;
+            }
+            getOperand(btn.value);
+        } else if (btn.classList.contains('clear')) {
+            clearDisplay();
+        } else if (btn.classList.contains('equal-sign')) {
+            calculate();
+        } else if (btn.classList.contains('dot')) {
+            if (num2.includes('.')) {
+                return;
+            }
+            getOperand(btn.value);
+        } else if (btn.classList.contains('sign-toggle')) {
+            toggleSign();
+        } else if (btn.classList.contains('percent')) {
+            percent();
         }
     });
 });
 
-btnEquals.addEventListener('click', () => {
-    calculate();
-});
-
-
-// const display = document.querySelector('input');
-// display.value = 1234;
-
-// operator = '/';
-// num1 = 2;
-// num2 = 3;
-// console.log(operate(operator, num1, num2));

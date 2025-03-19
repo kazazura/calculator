@@ -87,7 +87,7 @@ function calculate() {
     let operand2 = parseFloat(num2);
     //rounds to 3 decimal places only
     if (operand2 === 0 && operator === '÷') {
-        display.value = '?';
+        display.value = 'NAH 💀';
     } else {
         result = Math.round((operate(operator, operand1, operand2) + Number.EPSILON) * 1000) / 1000;
         num2 = result.toString();

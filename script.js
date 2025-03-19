@@ -117,6 +117,8 @@ buttons.forEach(btn => {
         if (btn.classList.contains('operator')) {
             if (checkerVar === true) {
                 checkerVar = false;
+            } else if (display.value === 'NAH 💀') {
+                clearDisplay();
             }
             getOperator(btn.value);
         } else if (btn.classList.contains('number')) {
@@ -138,8 +140,14 @@ buttons.forEach(btn => {
             }
             getOperand(btn.value);
         } else if (btn.classList.contains('sign-toggle')) {
+            if (display.value === 'NAH 💀') {
+                clearDisplay();
+            }
             toggleSign();
         } else if (btn.classList.contains('percent')) {
+            if (display.value === 'NAH 💀') {
+                clearDisplay();
+            }
             percent();
         }
     });
@@ -149,92 +157,106 @@ window.addEventListener('keydown', event => {
     if (event.key === 'Backspace') {
         undo();
     } else if (event.key === '1') {
-        if (checkerVar === true) {
+        if (checkerVar === true || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
         getOperand(event.key);
     } else if (event.key === '2') {
-        if (checkerVar === true) {
+        if (checkerVar === true || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
         getOperand(event.key);
     } else if (event.key === '3') {
-        if (checkerVar === true) {
+        if (checkerVar === true || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
         getOperand(event.key);
     } else if (event.key === '4') {
-        if (checkerVar === true) {
+        if (checkerVar === true || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
         getOperand(event.key);
     } else if (event.key === '5') {
-        if (checkerVar === true) {
+        if (checkerVar === true || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
         getOperand(event.key);
     } else if (event.key === '6') {
-        if (checkerVar === true) {
+        if (checkerVar === true  || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
         getOperand(event.key);
     } else if (event.key === '7') {
-        if (checkerVar === true) {
+        if (checkerVar === true || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
         getOperand(event.key);
     } else if (event.key === '8') {
-        if (checkerVar === true) {
+        if (checkerVar === true  || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
         getOperand(event.key);
     } else if (event.key === '9') {
-        if (checkerVar === true) {
+        if (checkerVar === true || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
         getOperand(event.key);
     } else if (event.key === '0') {
-        if (checkerVar === true) {
+        if (checkerVar === true || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
         getOperand(event.key);
     }
     else if (event.key === '.') {
-        if (num2.includes('.')) {
+        if (num2.includes('.') && checkerVar === true || display.value === 'NAH 💀') {
+            clearDisplay();
+            checkerVar = false;
+        } else if (num2.includes('.')) {
             return;
         }
         getOperand(event.key);
     } else if (event.key === '+') {
         if (checkerVar === true) {
             checkerVar = false;
+        } else if (display.value === 'NAH 💀') {
+            clearDisplay();
         }
         getOperator(event.key);
     } else if (event.key === '-') {
         if (checkerVar === true) {
             checkerVar = false;
+        } else if (display.value === 'NAH 💀') {
+            clearDisplay();
         }
         getOperator(event.key);
     } else if (event.key === '*') {
         if (checkerVar === true) {
             checkerVar = false;
+        } else if (display.value === 'NAH 💀') {
+            clearDisplay();
         }
         getOperator('×');
     } else if (event.key === '/') {
         if (checkerVar === true) {
             checkerVar = false;
+        } else if (display.value === 'NAH 💀') {
+            clearDisplay();
         }
         getOperator('÷');
     } else if (event.key === '%') {
+        if (display.value === 'NAH 💀') {
+            clearDisplay();
+        }
         percent();
     } else if (event.key === 'Enter') {
         calculate();
@@ -243,4 +265,5 @@ window.addEventListener('keydown', event => {
     }
 });
 
-
+//. operator num2 bug
+//. percent bug

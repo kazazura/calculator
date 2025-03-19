@@ -89,7 +89,7 @@ function calculate() {
         display.value = '?';
     } else {
         //rounds to 3 decimal places only
-        result = operate(operator, operand1, operand2).toFixed(3);
+        result = Math.round((operate(operator, operand1, operand2) + Number.EPSILON) * 1000) / 1000;
         num2 = result.toString();
         operator = '';
         num1 = '';
@@ -105,13 +105,20 @@ function clearDisplay() {
     display.value = '';
 }
 
+function undo() {
+    if (num2 !== '') {
+        num2 = '';
+    }
+    display.value = `${num1} ${operator} ${num2}`;
+}
+
 buttons.forEach(btn => {
     btn.addEventListener('click', () => {
         if (btn.classList.contains('operator')) {
             if (checkerVar === true) {
                 checkerVar = false;
             }
-            getOperator(btn.value)
+            getOperator(btn.value);
         } else if (btn.classList.contains('number')) {
             if (checkerVar === true) {
                 clearDisplay();
@@ -133,6 +140,104 @@ buttons.forEach(btn => {
             percent();
         }
     });
+});
+
+window.addEventListener('keydown', event => {
+    if (event.key === 'Backspace') {
+        undo();
+    } else if (event.key === '1') {
+        if (checkerVar === true) {
+            clearDisplay();
+            checkerVar = false;
+        }
+        getOperand(event.key);
+    } else if (event.key === '2') {
+        if (checkerVar === true) {
+            clearDisplay();
+            checkerVar = false;
+        }
+        getOperand(event.key);
+    } else if (event.key === '3') {
+        if (checkerVar === true) {
+            clearDisplay();
+            checkerVar = false;
+        }
+        getOperand(event.key);
+    } else if (event.key === '4') {
+        if (checkerVar === true) {
+            clearDisplay();
+            checkerVar = false;
+        }
+        getOperand(event.key);
+    } else if (event.key === '5') {
+        if (checkerVar === true) {
+            clearDisplay();
+            checkerVar = false;
+        }
+        getOperand(event.key);
+    } else if (event.key === '6') {
+        if (checkerVar === true) {
+            clearDisplay();
+            checkerVar = false;
+        }
+        getOperand(event.key);
+    } else if (event.key === '7') {
+        if (checkerVar === true) {
+            clearDisplay();
+            checkerVar = false;
+        }
+        getOperand(event.key);
+    } else if (event.key === '8') {
+        if (checkerVar === true) {
+            clearDisplay();
+            checkerVar = false;
+        }
+        getOperand(event.key);
+    } else if (event.key === '9') {
+        if (checkerVar === true) {
+            clearDisplay();
+            checkerVar = false;
+        }
+        getOperand(event.key);
+    } else if (event.key === '0') {
+        if (checkerVar === true) {
+            clearDisplay();
+            checkerVar = false;
+        }
+        getOperand(event.key);
+    }
+    else if (event.key === '.') {
+        if (num2.includes('.')) {
+            return;
+        }
+        getOperand(event.key);
+    } else if (event.key === '+') {
+        if (checkerVar === true) {
+            checkerVar = false;
+        }
+        getOperator(event.key);
+    } else if (event.key === '-') {
+        if (checkerVar === true) {
+            checkerVar = false;
+        }
+        getOperator(event.key);
+    } else if (event.key === '*') {
+        if (checkerVar === true) {
+            checkerVar = false;
+        }
+        getOperator('×');
+    } else if (event.key === '/') {
+        if (checkerVar === true) {
+            checkerVar = false;
+        }
+        getOperator('÷');
+    } else if (event.key === '%') {
+        percent();
+    } else if (event.key === 'Enter') {
+        calculate();
+    } else if (event.key === 'Delete') {
+        clearDisplay();
+    }
 });
 
 

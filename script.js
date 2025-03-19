@@ -85,10 +85,10 @@ function calculate() {
     let result;
     let operand1 = parseFloat(num1);
     let operand2 = parseFloat(num2);
-    if (operand2 === 0) {
+    //rounds to 3 decimal places only
+    if (operand2 === 0 && operator === '÷') {
         display.value = '?';
     } else {
-        //rounds to 3 decimal places only
         result = Math.round((operate(operator, operand1, operand2) + Number.EPSILON) * 1000) / 1000;
         num2 = result.toString();
         operator = '';

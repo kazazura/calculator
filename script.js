@@ -79,7 +79,7 @@ function percent() {
 }
 
 function calculate() {
-    if (num1 === '' || num2 === '') {
+    if (num1 === '' || num2 === '' || num2 === '.') {
         return;
     }
     let result;
@@ -120,7 +120,7 @@ buttons.forEach(btn => {
             }
             getOperator(btn.value);
         } else if (btn.classList.contains('number')) {
-            if (checkerVar === true) {
+            if (checkerVar === true || display.value === 'NAH 💀') {
                 clearDisplay();
                 checkerVar = false;
             }
@@ -130,7 +130,10 @@ buttons.forEach(btn => {
         } else if (btn.classList.contains('equal-sign')) {
             calculate();
         } else if (btn.classList.contains('dot')) {
-            if (num2.includes('.')) {
+            if (num2.includes('.') && checkerVar === true || display.value === 'NAH 💀') {
+                clearDisplay();
+                checkerVar = false;
+            } else if (num2.includes('.')) {
                 return;
             }
             getOperand(btn.value);

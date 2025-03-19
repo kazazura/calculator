@@ -119,6 +119,8 @@ buttons.forEach(btn => {
                 checkerVar = false;
             } else if (display.value === 'NAH 💀') {
                 clearDisplay();
+            } else if (num2 === '.') {
+                return;
             }
             getOperator(btn.value);
         } else if (btn.classList.contains('number')) {
@@ -132,7 +134,7 @@ buttons.forEach(btn => {
         } else if (btn.classList.contains('equal-sign')) {
             calculate();
         } else if (btn.classList.contains('dot')) {
-            if (num2.includes('.') && checkerVar === true || display.value === 'NAH 💀') {
+            if (checkerVar === true || display.value === 'NAH 💀') {
                 clearDisplay();
                 checkerVar = false;
             } else if (num2.includes('.')) {
@@ -147,6 +149,8 @@ buttons.forEach(btn => {
         } else if (btn.classList.contains('percent')) {
             if (display.value === 'NAH 💀') {
                 clearDisplay();
+            } else if (num2 === '.') {
+                return;
             }
             percent();
         }
@@ -187,7 +191,7 @@ window.addEventListener('keydown', event => {
         }
         getOperand(event.key);
     } else if (event.key === '6') {
-        if (checkerVar === true  || display.value === 'NAH 💀') {
+        if (checkerVar === true || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
@@ -199,7 +203,7 @@ window.addEventListener('keydown', event => {
         }
         getOperand(event.key);
     } else if (event.key === '8') {
-        if (checkerVar === true  || display.value === 'NAH 💀') {
+        if (checkerVar === true || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         }
@@ -216,9 +220,8 @@ window.addEventListener('keydown', event => {
             checkerVar = false;
         }
         getOperand(event.key);
-    }
-    else if (event.key === '.') {
-        if (num2.includes('.') && checkerVar === true || display.value === 'NAH 💀') {
+    } else if (event.key === '.') {
+        if (checkerVar === true || display.value === 'NAH 💀') {
             clearDisplay();
             checkerVar = false;
         } else if (num2.includes('.')) {
@@ -230,6 +233,8 @@ window.addEventListener('keydown', event => {
             checkerVar = false;
         } else if (display.value === 'NAH 💀') {
             clearDisplay();
+        } else if (num2 === '.') {
+            return;
         }
         getOperator(event.key);
     } else if (event.key === '-') {
@@ -237,6 +242,8 @@ window.addEventListener('keydown', event => {
             checkerVar = false;
         } else if (display.value === 'NAH 💀') {
             clearDisplay();
+        } else if (num2 === '.') {
+            return;
         }
         getOperator(event.key);
     } else if (event.key === '*') {
@@ -244,6 +251,8 @@ window.addEventListener('keydown', event => {
             checkerVar = false;
         } else if (display.value === 'NAH 💀') {
             clearDisplay();
+        } else if (num2 === '.') {
+            return;
         }
         getOperator('×');
     } else if (event.key === '/') {
@@ -251,11 +260,15 @@ window.addEventListener('keydown', event => {
             checkerVar = false;
         } else if (display.value === 'NAH 💀') {
             clearDisplay();
+        } else if (num2 === '.') {
+            return;
         }
         getOperator('÷');
     } else if (event.key === '%') {
         if (display.value === 'NAH 💀') {
             clearDisplay();
+        } else if (num2 === '.') {
+            return;
         }
         percent();
     } else if (event.key === 'Enter') {
@@ -264,6 +277,3 @@ window.addEventListener('keydown', event => {
         clearDisplay();
     }
 });
-
-//. operator num2 bug
-//. percent bug
